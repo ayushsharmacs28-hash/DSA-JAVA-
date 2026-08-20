@@ -1,0 +1,41 @@
+public class Main {
+    public static void main(String[] args) {
+
+        int[][] a = {
+            {3, 7, 8},
+            {9, 11, 13},
+            {15, 16, 17}
+        };
+
+        int n = a.length;
+        int m = a[0].length;
+
+        int[] rowMin = new int[n];
+        int[] colMax = new int[m];
+
+        // Find row minimum
+        for (int i = 0; i < n; i++) {
+            rowMin[i] = a[i][0];
+            for (int j = 1; j < m; j++) {
+                rowMin[i] = Math.min(rowMin[i], a[i][j]);
+            }
+        }
+
+        // Find column maximum
+        for (int j = 0; j < m; j++) {
+            colMax[j] = a[0][j];
+            for (int i = 1; i < n; i++) {
+                colMax[j] = Math.max(colMax[j], a[i][j]);
+            }
+        }
+
+        // Check lucky number
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                if (a[i][j] == rowMin[i] && a[i][j] == colMax[j]) {
+                    System.out.println("Lucky Number = " + a[i][j]);
+                }
+            }
+        }
+    }
+}

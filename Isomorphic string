@@ -1,0 +1,37 @@
+public class IsomorphicBruteForce {
+    public static boolean isIsomorphic(String s, String t) {
+        // Strings of different lengths can never be isomorphic
+        if (s.length() != t.length()) {
+            return false;
+        }
+
+        int len = s.length();
+
+        // Outer loop selects the current character pair to validate
+        for (int i = 0; i < len; i++) {
+            char charS = s.charAt(i);
+            char charT = t.charAt(i);
+
+            // Inner loop scans the remaining characters to check for violations
+            for (int j = i + 1; j < len; j++) {
+                // Scenario 1: Same character in 's' must map to the same character in 't'
+                if (s.charAt(j) == charS && t.charAt(j) != charT) {
+                    return false;
+                }
+                
+                // Scenario 2: Different characters in 's' cannot map to the same character in 't'
+                if (s.charAt(j) != charS && t.charAt(j) == charT) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(isIsomorphic("egg", "add"));     // Output: true
+        System.out.println(isIsomorphic("foo", "bar"));     // Output: false
+        System.out.println(isIsomorphic("paper", "title")); // Output: true
+    }
+}

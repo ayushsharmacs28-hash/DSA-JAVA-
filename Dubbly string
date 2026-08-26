@@ -1,0 +1,51 @@
+public class BuddyString {
+
+    public static boolean buddyStrings(String s1, String s2) {
+
+        // Step 1: If lengths are different, return false
+        if (s1.length() != s2.length()) {
+            return false;
+        }
+
+        // Step 2: Convert String into character array
+        char[] sArray = s1.toCharArray();
+
+        // Step 3: Try every possible pair of positions
+        for (int i = 0; i < sArray.length; i++) {
+
+            for (int j = i + 1; j < sArray.length; j++) {
+
+                // Swap two characters
+                swap(sArray, i, j);
+
+                // Check if after swapping, both strings are equal
+                if (String.valueOf(sArray).equals(s2)) {
+                    return true;
+                }
+
+                // Swap back to restore original string
+                swap(sArray, i, j);
+            }
+        }
+
+        // No valid swap found
+        return false;
+    }
+
+    // Swap method
+    public static void swap(char[] arr, int i, int j) {
+
+        char temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+    // Main method
+    public static void main(String[] args) {
+
+        System.out.println(buddyStrings("ab", "ba"));
+        System.out.println(buddyStrings("ab", "ab"));
+        System.out.println(buddyStrings("aa", "aa"));
+        System.out.println(buddyStrings("abc", "abd"));
+    }
+}

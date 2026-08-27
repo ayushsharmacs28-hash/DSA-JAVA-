@@ -1,0 +1,26 @@
+class Main {
+
+    public static boolean detectCapitalUsage(String s) {
+        int c = 0;
+        int n = s.length();
+
+        for (int i = 0; i < n; i++) {
+            if (Character.isUpperCase(s.charAt(i))) {
+                c++;
+            }
+        }
+
+        if (c == n || c == 0) {
+            return true;
+        }
+
+        return c == 1 && Character.isUpperCase(s.charAt(0));
+    }
+
+    public static void main(String[] args) {
+        System.out.println(detectCapitalUsage("INDIA"));
+        System.out.println(detectCapitalUsage("india"));
+        System.out.println(detectCapitalUsage("India"));
+        System.out.println(detectCapitalUsage("InDia"));
+    }
+}

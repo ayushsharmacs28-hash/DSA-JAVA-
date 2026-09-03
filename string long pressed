@@ -1,0 +1,52 @@
+class Main {
+
+    static boolean isLongPressed(String name, String typed) {
+
+        int n1 = name.length();
+        int n2 = typed.length();
+
+        int nindex = 0;
+        int tindex = 0;
+
+        while (nindex < n1 && tindex < n2) {
+
+            if (name.charAt(nindex) != typed.charAt(tindex)) {
+                return false;
+            }
+
+            int ngrouped = nindex + 1;
+
+            while (ngrouped < n1 &&
+                   name.charAt(ngrouped) == name.charAt(nindex)) {
+                ngrouped++;
+            }
+
+            int tgrouped = tindex + 1;
+
+            while (tgrouped < n2 &&
+                   typed.charAt(tgrouped) == typed.charAt(tindex)) {
+                tgrouped++;
+            }
+
+            int ngroupsize = ngrouped - nindex;
+            int tgroupsize = tgrouped - tindex;
+
+            if (ngroupsize > tgroupsize) {
+                return false;
+            }
+
+            nindex = ngrouped;
+            tindex = tgrouped;
+        }
+
+        return nindex == n1 && tindex == n2;
+    }
+
+    public static void main(String[] args) {
+
+        String name = "alex";
+        String typed = "aaleex";
+
+        System.out.println(isLongPressed(name, typed));
+    }
+}

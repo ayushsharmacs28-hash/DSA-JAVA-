@@ -1,0 +1,61 @@
+
+import java.util.*;
+
+public class GoatLatin {
+
+    public static String toGoatLatin(String sentence) {
+
+        String[] words = sentence.split(" ");
+        String result = "";
+
+        for (int i = 0; i < words.length; i++) {
+
+            String word = words[i];
+            char firstchar = word.charAt(0);
+
+            // Check if first character is a vowel
+            if (firstchar == 'a' || firstchar == 'e' || firstchar == 'i' ||
+                firstchar == 'o' || firstchar == 'u' ||
+                firstchar == 'A' || firstchar == 'E' || firstchar == 'I' ||
+                firstchar == 'O' || firstchar == 'U') {
+
+                word = word + "ma";
+            }
+
+            // If first character is a consonant
+            else {
+                word = word.substring(1) + firstchar + "ma";
+            }
+
+            // Add 'a' i+1 times
+            String transformed = word;
+
+            for (int j = 0; j <= i; j++) {
+                transformed += "a";
+            }
+
+            // Build final result
+            if (i == 0) {
+                result = transformed;
+            } else {
+                result = result + " " + transformed;
+            }
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("Enter a sentence:");
+        String sentence = sc.nextLine();
+
+        System.out.println("Goat Latin:");
+        System.out.println(toGoatLatin(sentence));
+
+        sc.close();
+    }
+}
+

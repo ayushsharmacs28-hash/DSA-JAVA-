@@ -1,0 +1,43 @@
+```java
+import java.util.*;
+
+public class CountBinaryString {
+
+    public static int countBinarySubstrings(String s) {
+
+        int count = 0;
+        int previous = 0;
+        int current = 1;
+
+        for (int i = 1; i < s.length(); i++) {
+
+            if (s.charAt(i) == s.charAt(i - 1)) {
+                current++;
+            } 
+            else {
+                count += Math.min(previous, current);
+                previous = current;
+                current = 1;
+            }
+        }
+
+        count += Math.min(previous, current);
+
+        return count;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter binary string: ");
+        String s = sc.nextLine();
+
+        int result = countBinarySubstrings(s);
+
+        System.out.println("Count = " + result);
+
+        sc.close();
+    }
+}
+```

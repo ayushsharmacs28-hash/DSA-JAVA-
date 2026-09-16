@@ -1,7 +1,8 @@
 import java.util.*;
 
-class Solution {
-    public int calPoints(String[] operations) {
+class Main {
+
+    public static int calPoints(String[] operations) {
 
         Stack<Integer> st = new Stack<>();
 
@@ -10,9 +11,11 @@ class Solution {
             if (s.equals("C")) {
                 st.pop();
             }
+
             else if (s.equals("D")) {
                 st.push(st.peek() * 2);
             }
+
             else if (s.equals("+")) {
                 int a = st.pop();
                 int b = st.peek();
@@ -20,6 +23,7 @@ class Solution {
                 st.push(a);
                 st.push(a + b);
             }
+
             else {
                 st.push(Integer.parseInt(s));
             }
@@ -32,5 +36,12 @@ class Solution {
         }
 
         return sum;
+    }
+
+    public static void main(String[] args) {
+
+        String[] s = {"6", "-2", "4", "C", "9", "+", "+"};
+
+        System.out.println(calPoints(s));
     }
 }

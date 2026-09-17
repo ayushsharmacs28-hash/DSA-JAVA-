@@ -1,0 +1,32 @@
+// Online Java Compiler
+// Use this editor to write, compile and run your Java code online
+import java.util.*;
+
+class Solution {
+    public String makeGood(String s) {
+        Stack<Character> st = new Stack<>();
+
+        for (char c : s.toCharArray()) {
+            if (!st.isEmpty() && Math.abs(st.peek() - c) == 32) {
+                st.pop();
+            } else {
+                st.push(c);
+            }
+        }
+
+        StringBuilder ans = new StringBuilder();
+
+        for (char c : st) {
+            ans.append(c);
+        }
+
+        return ans.toString();
+    }
+
+    public static void main(String[] args) {
+
+        Solution obj = new Solution();
+
+        System.out.println(obj.makeGood("leEeetCccode"));
+    }
+}
